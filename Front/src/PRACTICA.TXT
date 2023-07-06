@@ -1,0 +1,58 @@
+CONST handleagregar = ()=>{
+   axios.post ("localhost/dentistar/registrar",{
+
+   nombre:nombre,
+   apellido:apellido,
+
+   }).then(()=>{
+    alert ("registrado")
+   }) 
+}
+
+input onchange={(e)=>setnombre(e.target.value)}
+
+let {id} = useParams
+
+const [nombre,setNombre] = useState("")
+const [apellido,setApellido] = useState("")
+
+const getdentista = ()=>{
+ const url = ("localhost/dentistas/")
+ axios.get (url+id).then((resp)=>{
+  setNombre(resp.data[0].nombre)
+  setApellido(resp.data[0].apellido)
+ })   
+}
+
+const handleEditar = () =>{
+ const url = ("localhost/dentistas/editar/")
+ axios.put (url+id,{
+  nombre:nombre,
+  apellido:apellido,  
+ }).then(()=>{
+    alert("dentista editado")
+ })   
+}
+
+ const[dentista,setDentista] = useState([])
+
+ const handleEliminar = (id) =>{
+  const url = "localhost/pacientes/eliminar/"
+  const eliminar = axios.delete (url+id)
+  if(eliminar){
+    axios.get ("/pacientes").then((resp)=>{
+     setDentista (resp.data)   
+    })
+    MostrarDentistas
+  }  
+ }
+
+ const MostrarDentistas = () =>{
+    axios.get("localhost/dentistas/agregar/").then((resp)=>{
+      setDentista(resp.data)  
+    })
+ }
+
+useEffect(()=>{
+  MostrarDentistas()  
+},[])

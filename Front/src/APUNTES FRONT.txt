@@ -1,0 +1,99 @@
+AGREGAR:
+
+RECORDAR QUE PARA AGREGAR ES AXIOS.POST
+
+para agregar algo primero tenemos que declarar todas nuestras variables con "usestate" la estructura seria algo como 
+
+1. CONST [NOMBRE, SETNOMBRE] = USESTATE("")
+y asi con cada uno de los datos que tenemos en nuestra tabla de la db
+
+luego como queremos agregar un boton con una funcion "AGREGAR" tenemos que realizar una peticion de exios.
+
+importamos axios de axios
+
+y creamos la funcion:
+
+2. " const handleAgregar = () => {
+    axios.POST ("http://localhost:8000/pacientes/registrar), {
+        nombre:nombre,
+        apellido:apellido
+    }.then(()=>{
+        alert("registrado")
+    })
+} "
+
+3. dentro de un formulario "form" mostramos esos valores traidos 
+
+<label>nombre<label>
+<input onchange={(e)=> setnombre(e.target.value)} ><input>
+
+4. buton con la funcion onclick agregar {handleagregar}
+
+EDITAR:
+
+1. primero traemos con el usestate todos los valores igual como en agregar
+
+2. luego hacemos una constante para traer todos los dentistas que hay  
+PARA TRAER USAMOS GET EN AXIOS
+
+"const getdentista = () =>{
+  const url = "http://localhost:8000/dentista/"
+  axios.get(url+id).then((resp)=>{
+    setnombre(resp.data[0].nombredent)
+
+  })
+}
+
+3. hacemos la funcion editar 
+PARA EDITAR EN AXIOS USAMOS PUT
+
+const handleEditar = ()=>{
+   const url = ("http://localhost:8000/dentista/editar/")
+   const axios.put(url+id,{
+    nombre:nombre,
+    apellido:apellido
+   }).then(()=>{
+    alert("dentista actualizado")
+   }) 
+}
+
+useEffect(()=>{
+    getdentista
+},[])
+
+TABLA:
+
+const [destista,setDentista] = usestate("")
+
+const handleEliminar = (id) =>{
+  const url = "localhost/dentista/eliminar/"
+  const eliminar = axios.delete(url+id)
+  if(eliminar){
+    axios.get("localhost/pacientes").then((resp)=>{
+     setDentista(resp.data)
+    })
+    MostrarDentistas
+  }
+}
+
+const MostrarDentistas =() =>{
+  axios.get("localhost/dentistas).then((resp)=>{
+    setDentista(resp.data)
+  })
+}
+
+useEffect(()=>{
+  MostrarDentistas
+},[])
+
+2. Luego nos venimos a la tabla hecha y en tbody
+hacemos la siguiente estructura:
+{
+  dentista.map((dentista)=>{
+    return(
+      tr key={dentista.id_dentista}
+      td {dentista.nombredent}
+      td {dentista.apellidodent}
+    )
+  })
+}

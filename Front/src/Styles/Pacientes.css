@@ -1,0 +1,14 @@
+.div_Panel{
+    display: flex;
+}
+.div_Panel>ul>li{
+    display: inline-block;
+    margin: 15px;
+}
+
+.boton_paciente1{
+   margin: 10px;
+}
+body{
+    background-image: url("../assets/imagenFondo.jpg")
+}

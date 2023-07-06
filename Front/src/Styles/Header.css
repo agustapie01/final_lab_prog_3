@@ -1,0 +1,41 @@
+.header_prinpipal{
+    display: flex;
+    height: 100px;
+    padding: 10px;
+    justify-content: space-between;
+   background-color: black;
+    
+}
+
+.link{
+    font-weight: 500;
+    padding-right: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 21px;
+    padding: 4px;
+    margin: 5px;
+    border: 1.5px white solid;
+}
+
+
+
+.Logo_header{
+    display: flex;
+}
+
+.img_logo{
+    height: 90px;
+    margin-right: 13px;
+    border-radius: 200px;
+}
+
+.h2_header{
+    margin-top: 15px;
+    text-decoration: underline;
+    color: white;
+    font-size: 25px;
+
+}
+
+
